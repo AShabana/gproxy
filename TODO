@@ -1,0 +1,3 @@
+seprate the counters and configs git from src git
+to make testing process less headic , remove all app config to conf file i.e. shm ,log files , ports 
+

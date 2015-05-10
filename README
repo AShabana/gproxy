@@ -1,0 +1,10 @@
+Current version :
+	write scenario i.e. linkX 
+	add it to runtime folder
+	add it to runtime/__init__.py without .py
+	you can also add conf i.e. config/lists/all.py
+	restart the proxy
+
+INSTALLATION:
+-----------
+	

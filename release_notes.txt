@@ -1,0 +1,6 @@
+Enhance testability of the system  by :
+	take config from file , even logic class
+
+Remove manual edit to list src file replace it by external script
+
+
