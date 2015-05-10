@@ -7,4 +7,9 @@ Current version :
 
 INSTALLATION:
 -----------
-	
+	Requirements :
+	-------------
+		Twisted==14.0.2
+		configobj==5.0.6
+		six==1.8.0
+		zope.interface==4.1.1
