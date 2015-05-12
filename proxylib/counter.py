@@ -6,7 +6,7 @@ import glob, re
 import datetime
 from datetime import datetime as dt
 import marshal
-
+import os
 class Counter(object):
 	def __init__(self, dirName):
 		"""
@@ -21,8 +21,9 @@ class Counter(object):
 		self._shm_seg = "/dev/shm/gproxy/" + dirName + "/"
 		if not path.exists(self._shm_seg):
 			print("shm not exist " + self._shm_seg)
-			print("please create " + self._shm_seg)
-			exit(12)
+			print("creating new one at " + self._shm_seg)
+			os.makedirs("/dev/shm/gproxy")
+			os.makedirs("/dev/shm/gproxy/counters")
 
 	def printCounters(self,link='all'):
 		if link == 'all':
