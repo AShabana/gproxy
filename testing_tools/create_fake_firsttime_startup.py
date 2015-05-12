@@ -20,6 +20,11 @@ pid-file = "listener.pid"
 if not os.path.exists('../config/app.conf') :
 	with open('../config/app.conf', 'w') as config_file :
     		config_file.write(config_data)
-# Create SHM Segment 
+# Create SHM Segment for runtime counter
 if not os.path.exists("/dev/shm/gproxy"):
 	os.makedirs("/dev/shm/gproxy")
+if not os.path.exists("/dev/shm/gproxy/counters"):
+	os.makedirs("/dev/shm/gproxy/counters")
+# Create prisist storage for runtime counter
+if not os.path.exists("../counters"):
+	os.makedirs("../counters")

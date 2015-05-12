@@ -15,11 +15,13 @@ class Counter(object):
 		"""
 		self.c = {}
 		if not path.exists('./' + dirName):
-			print("no runtime coutner path found!!"  )	
+			print("no runtime coutner path found with name  " + dirName  )	
+			print("Please create one")
 			exit(11)
 		self._shm_seg = "/dev/shm/gproxy/" + dirName + "/"
 		if not path.exists(self._shm_seg):
 			print("shm not exist " + self._shm_seg)
+			print("please create " + self._shm_seg)
 			exit(12)
 
 	def printCounters(self,link='all'):

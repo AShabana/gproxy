@@ -33,8 +33,8 @@ class KannelProxy(resource.Resource):
 	def __init__(self):
 		log.msg("Starting the gproxy inist")
 	
-	def loadConfig(self):
-		gplists = GPLists.GPLists()
+	def loadConfig(self,path=None):
+		gplists = GPLists.GPLists(path)
 		return gplists.load()
 
 	def verifyURL(self, url):
@@ -78,12 +78,12 @@ def signal_handler(sig, stack):
 	if sig == signal.SIGHUP :
 		print "[listener->pid:%d]: Received SIGHUP" %(getpid())
 		print "[listener->pid:%d]: Reload the configuration" %(getpid())
-		loadConfiguration(app)
+		loadConfiguration(app, path)
 		print "[listener->pid:%d]: Release open fds. ToDo" %(getpid())
 
-def loadConfiguration(app):
+def loadConfiguration(app, path):
 	__builtin__.Config = {}
-	__builtin__.Config = app.loadConfig()
+	__builtin__.Config = app.loadConfig(path)
 
 def main(argv):
 	""" Usage python listener.py -f path/to/conf-file or python listener.py"""
@@ -109,7 +109,7 @@ def main(argv):
 	signal.signal(signal.SIGHUP, signal_handler)
 	signal.signal(signal.SIGUSR1, signal_handler)
 	print "[listener->pid:%d]: load configs" %(getpid())
-	loadConfiguration(app)
+	loadConfiguration(app, CONF['lists'])
 	_file = CONF['log-file']
 	print "[listener->pid:%d]: load counters "  %(getpid())
 	c = counter.Counter(CONF['counter-path'])
