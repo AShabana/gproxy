@@ -7,9 +7,51 @@ Current version :
 
 INSTALLATION:
 -----------
-	Requirements :
+	Pre-Requirsits :
 	-------------
 		Twisted==14.0.2
 		configobj==5.0.6
 		six==1.8.0
 		zope.interface==4.1.1
+
+	Steps for first time startup:
+	----------------------------
+	1. Create startup config
+	------------------------
+		$ python
+		>>> accounts = ( 'ahmed' ,'ali' ,'omar')
+		>>> with open('accounts','wb') as fd :
+		...     pickle.dump(accounts, fd)
+		... 
+		>>> with open('accounts','r') as fd :
+		...     pickle.load(fd)
+		... 
+		('ahmed', 'ali', 'omar')
+		
+		OR, run 
+		$ cd testing_tools
+		$ python create_fake_firsttime_startup.py
+		
+	2. Add config file as a startup i.e. config/app.conf
+	----------------------------------------------------
+
+		logic = "KannelProxy"
+		lists = "config/lists/accounts"
+		counter-path = "counters"
+		ports = "2014,2015,2016,2017,2018"
+		log-file = "/var/log/GProxy.log"
+		pid-file = "listener.pid"
+
+	3. Use it
+	---------
+	   a) Listener
+		python listener.py -f config/app.conf # default just act as python listener.py
+		or
+		python listener.py -f config/test.conf
+	   b) GPAdmin.py
+	       python GPAdmin.py --help
+	       before run webinterface
+	       put www at /var/www/html
+	       start apache
+	       python GPAdmin.py
+
