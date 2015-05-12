@@ -2,6 +2,8 @@ import os
 import pickle
 print "This script MUST run from script directory "
 # Create fake runtime list if not exist
+if not os.path.exists('../config/lists'):
+	os.makedirs('../config/lists')
 if not os.path.exists('../config/lists/accounts') :
 	accounts = ( 'ahmed' ,'ali' ,'omar')
 	with open('../config/lists/accounts','wb') as fd :
