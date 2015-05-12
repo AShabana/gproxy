@@ -28,6 +28,8 @@ INSTALLATION:
 		... 
 		('ahmed', 'ali', 'omar')
 		
+		# Create SHARED MEMORY SEG
+		mkdir /dev/shm/gproxy/
 		OR, run 
 		$ cd testing_tools
 		$ python create_fake_firsttime_startup.py
