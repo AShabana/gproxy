@@ -56,4 +56,34 @@ INSTALLATION:
 	       put www at /var/www/html
 	       start apache
 	       python GPAdmin.py
+	       
+	4. Add policy :
+	--------------
+	example 
+	Add policy called ksa 
+	1. add runtime/__init__.py
+	<code>
+	_all__=['Aroli','ksa']
+	</code>
+	2. add runtime/ksa.py file 
+<code>	
+from proxylib import Request
+from twisted.python import log
+from twisted.python.util import println
+import imp
+
+def exe(r):
+# Header at automation
+	request = Request.requestObject(r)
+
+# End Header
+	if request.sender not in Config["ksa_white_list_senders"] : #ALL KSA whitelist
+		request.smsc = "ignore"
+	elif request.sender not in Config["stc_white_list_senders"] : #STC whitelist
+		request.smsc = "stc_adv"
+	else :
+		request.smsc = "stc" # Transaction route
+	request.kannelIP = "ksa"
+	request.send()
+</code>
 
