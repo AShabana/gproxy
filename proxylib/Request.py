@@ -15,7 +15,7 @@ class requestObject(object):
 	def send(self):
 		url  = 	"".join(("http://" , self.req['Kannel-host']\
 								,":", self.req['Kannel-port']\
-								,"/cgi-bin/sendsms?username=nemra2&password=koko88uptowork&smsc="\
+								,"/cgi-bin/sendsms?smsc="\
 								,self.req['smsc']\
 								,"&account=" , self.req['account']\
 								,"&limit=" , self.req['limit']\
